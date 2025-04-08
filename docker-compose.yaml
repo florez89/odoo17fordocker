@@ -30,8 +30,8 @@ services:
       - postgresql_password
 
 volumes:
-  odoo-web-data-project:
-  odoo-db-data-project:
+  odoo-web-data:
+  odoo-db-data:
 
 secrets:
   postgresql_password:
