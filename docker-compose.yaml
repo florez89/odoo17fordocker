@@ -2,13 +2,13 @@ services:
   web:
     image: odoo:17.0
     depends_on:
-      - db17
+      - db
     restart: always
     ports:
       - "9069:8069" # odoo port here you will see you app on this port
       - "9072:8072" # odoo websocket port for communication
     volumes:
-      - odoo-17-data:/var/lib/odoo
+      - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
       - ./addons:/mnt/extra-addons
     environment:
@@ -25,7 +25,7 @@ services:
       - PGDATA=/var/lib/postgresql/data/pgdata
     restart: always
     volumes:
-      - odoo-db-data-project:/var/lib/postgresql/data
+      - odoo-db-data:/var/lib/postgresql/data
     secrets:
       - postgresql_password
 
