@@ -1,17 +1,18 @@
 services:
   web:
     image: odoo:17.0
+    command: --config=/etc/odoo/odoo.conf  # ✅ Usar archivo de configuración
     depends_on:
       - db
     restart: always
     ports:
-      - "9069:8069" # odoo port here you will see you app on this port
-      - "9072:8072" # odoo websocket port for communication
+      - "9069:8069"  # Odoo web
+      - "9072:8072"  # Odoo live chat (longpolling)
     volumes:
       - odoo-web-data:/var/lib/odoo
-      - ./config:/etc/odoo
+      - ./config:/etc/odoo                    # ✅ Ruta donde está tu odoo.conf
       - ./addons:/mnt/extra-addons
-      - odoo-log-data:/var/log/odoo # mapea el volumen de logs
+      - odoo-log-data:/var/log/odoo           # ✅ Logs persistentes
     environment:
       - PASSWORD_FILE=/run/secrets/postgresql_password
     secrets:
@@ -33,7 +34,7 @@ services:
 volumes:
   odoo-web-data:
   odoo-db-data:
-  odoo-log-data: # <-- agregá esta línea
+  odoo-log-data:  # ✅ volumen para logs
 
 secrets:
   postgresql_password:
