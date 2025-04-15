@@ -11,6 +11,7 @@ services:
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
       - ./addons:/mnt/extra-addons
+      - odoo-log-data:/var/log/odoo # mapea el volumen de logs
     environment:
       - PASSWORD_FILE=/run/secrets/postgresql_password
     secrets:
