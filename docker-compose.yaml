@@ -33,6 +33,7 @@ services:
 volumes:
   odoo-web-data:
   odoo-db-data:
+  odoo-log-data: # <-- agregá esta línea
 
 secrets:
   postgresql_password:
